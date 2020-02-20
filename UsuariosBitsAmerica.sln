@@ -13,9 +13,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04.UnitOfWork", "04.UnitOfW
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05.Models", "05.Models", "{95D58087-8B57-48CE-A92E-FE3B7564357C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "src\Client\Api\Api.csproj", "{A10CF051-862B-4CD0-BA94-CE1F3AB97985}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "src\Client\Api\Api.csproj", "{A10CF051-862B-4CD0-BA94-CE1F3AB97985}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "src\Services\Services\Services.csproj", "{8ED04EC7-91EC-4A90-88D5-314F2C36C9DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "src\Services\Services\Services.csproj", "{8ED04EC7-91EC-4A90-88D5-314F2C36C9DB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence.Interfaces", "src\Persistence\Persistence.Interfaces\Persistence.Interfaces.csproj", "{11010339-F490-459A-BE8A-93F3A64BC223}"
 EndProject
@@ -25,7 +25,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitOfWork.Interfaces", "sr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitOfWork.SqlServer", "src\UnitOfWork\UnitOfWork.SqlServer\UnitOfWork.SqlServer.csproj", "{8D356C86-A47D-4899-81A2-DB4BF6262B91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "src\Models\Models\Models.csproj", "{D5DCE830-3D2F-4AEF-A96B-3247161FBD77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "src\Models\Models\Models.csproj", "{D5DCE830-3D2F-4AEF-A96B-3247161FBD77}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "06.Common", "06.Common", "{B3A2E7B9-8CBA-48C7-9184-41816FFDE742}"
+	ProjectSection(SolutionItems) = preProject
+		Script_Inicial.sql = Script_Inicial.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
