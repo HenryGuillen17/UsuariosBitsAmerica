@@ -22,6 +22,15 @@ namespace Api
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddMyDependencies(Configuration);
+
+
+            services.AddCors(options => {
+                options.AddPolicy("AllowAccessToAll", builder =>
+                    builder.AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowAnyOrigin()
+                );
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +50,8 @@ namespace Api
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors("AllowAccessToAll");
 
             app.UseMvc(routes =>
             {

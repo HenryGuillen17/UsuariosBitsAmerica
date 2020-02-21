@@ -1,0 +1,466 @@
+<style>
+  :host {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 8px 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .spacer {
+    flex: 1;
+  }
+
+  .toolbar {
+    height: 60px;
+    margin: -8px;
+    display: flex;
+    align-items: center;
+    background-color: #1976d2;
+    color: white;
+    font-weight: 600;
+  }
+
+  .toolbar img {
+    margin: 0 16px;
+  }
+
+  .toolbar #twitter-logo {
+    height: 40px;
+    margin: 0 16px;
+  }
+
+  .toolbar #twitter-logo:hover {
+    opacity: 0.8;
+  }
+
+  .content {
+    display: flex;
+    margin: 32px auto;
+    padding: 0 16px;
+    max-width: 960px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  svg.material-icons {
+    height: 24px;
+    width: auto;
+  }
+
+  svg.material-icons:not(:last-child) {
+    margin-right: 8px;
+  }
+
+  .card svg.material-icons path {
+    fill: #888;
+  }
+
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 16px;
+  }
+
+  .card {
+    border-radius: 4px;
+    border: 1px solid #eee;
+    background-color: #fafafa;
+    height: 40px;
+    width: 200px;
+    margin: 0 8px 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+    line-height: 24px;
+  }
+
+  .card-container .card:not(:last-child) {
+    margin-right: 0;
+  }
+
+  .card.card-small {
+    height: 16px;
+    width: 168px;
+  }
+
+  .card-container .card:not(.highlight-card) {
+    cursor: pointer;
+  }
+
+  .card-container .card:not(.highlight-card):hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 17px rgba(black, 0.35);
+  }
+
+  .card-container .card:not(.highlight-card):hover .material-icons path {
+    fill: rgb(105, 103, 103);
+  }
+
+  .card.highlight-card {
+    background-color: #1976d2;
+    color: white;
+    font-weight: 600;
+    border: none;
+    width: auto;
+    min-width: 30%;
+    position: relative;
+  }
+
+  .card.card.highlight-card span {
+    margin-left: 60px;
+  }
+
+  svg#rocket {
+    width: 80px;
+    position: absolute;
+    left: -10px;
+    top: -24px;
+  }
+
+  svg#rocket-smoke {
+    height: 100vh;
+    position: absolute;
+    top: 10px;
+    right: 180px;
+    z-index: -10;
+  }
+
+  a,
+  a:visited,
+  a:hover {
+    color: #1976d2;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #125699;
+  }
+
+  .terminal {
+    position: relative;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 6px;
+    padding-top: 45px;
+    margin-top: 8px;
+    overflow: hidden;
+    background-color: rgb(15, 15, 16);
+  }
+
+  .terminal::before {
+    content: "\2022 \2022 \2022";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: rgb(58, 58, 58);
+    color: #c2c3c4;
+    width: 100%;
+    font-size: 2rem;
+    line-height: 0;
+    padding: 14px 0;
+    text-indent: 4px;
+  }
+
+  .terminal pre {
+    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+    color: white;
+    padding: 0 1rem 1rem;
+    margin: 0;
+  }
+
+  .circle-link {
+    height: 40px;
+    width: 40px;
+    border-radius: 40px;
+    margin: 8px;
+    background-color: white;
+    border: 1px solid #eeeeee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: 1s ease-out;
+  }
+
+  .circle-link:hover {
+    transform: translateY(-0.25rem);
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  footer {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    line-height: 20px;
+  }
+
+  footer a {
+    display: flex;
+    align-items: center;
+  }
+
+  .github-star-badge {
+    color: #24292e;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    padding: 3px 10px;
+    border: 1px solid rgba(27,31,35,.2);
+    border-radius: 3px;
+    background-image: linear-gradient(-180deg,#fafbfc,#eff3f6 90%);
+    margin-left: 4px;
+    font-weight: 600;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+  }
+
+  .github-star-badge:hover {
+    background-image: linear-gradient(-180deg,#f0f3f6,#e6ebf1 90%);
+    border-color: rgba(27,31,35,.35);
+    background-position: -.5em;
+  }
+
+  .github-star-badge .material-icons {
+    height: 16px;
+    width: 16px;
+    margin-right: 4px;
+  }
+
+  svg#clouds {
+    position: fixed;
+    bottom: -160px;
+    left: -230px;
+    z-index: -10;
+    width: 1920px;
+  }
+
+
+  /* Responsive Styles */
+  @media screen and (max-width: 767px) {
+
+    .card-container > *:not(.circle-link) ,
+    .terminal {
+      width: 100%;
+    }
+
+    .card:not(.highlight-card) {
+      height: 16px;
+      margin: 8px 0;
+    }
+
+    .card.highlight-card span {
+      margin-left: 72px;
+    }
+
+    svg#rocket-smoke {
+      right: 120px;
+      transform: rotate(-5deg);
+    }
+  }
+
+  @media screen and (max-width: 575px) {
+    svg#rocket-smoke {
+      display: none;
+      visibility: hidden;
+    }
+  }
+</style>
+
+<div class="content" role="main">
+  <svg id="clouds" alt="Gray Clouds Background" xmlns="http://www.w3.org/2000/svg" width="2611.084" height="485.677" viewBox="0 0 2611.084 485.677">
+    <path id="Path_39" data-name="Path 39" d="M2379.709,863.793c10-93-77-171-168-149-52-114-225-105-264,15-75,3-140,59-152,133-30,2.83-66.725,9.829-93.5,26.25-26.771-16.421-63.5-23.42-93.5-26.25-12-74-77-130-152-133-39-120-212-129-264-15-54.084-13.075-106.753,9.173-138.488,48.9-31.734-39.726-84.4-61.974-138.487-48.9-52-114-225-105-264,15a162.027,162.027,0,0,0-103.147,43.044c-30.633-45.365-87.1-72.091-145.206-58.044-52-114-225-105-264,15-75,3-140,59-152,133-53,5-127,23-130,83-2,42,35,72,70,86,49,20,106,18,157,5a165.625,165.625,0,0,0,120,0c47,94,178,113,251,33,61.112,8.015,113.854-5.72,150.492-29.764a165.62,165.62,0,0,0,110.861-3.236c47,94,178,113,251,33,31.385,4.116,60.563,2.495,86.487-3.311,25.924,5.806,55.1,7.427,86.488,3.311,73,80,204,61,251-33a165.625,165.625,0,0,0,120,0c51,13,108,15,157-5a147.188,147.188,0,0,0,33.5-18.694,147.217,147.217,0,0,0,33.5,18.694c49,20,106,18,157,5a165.625,165.625,0,0,0,120,0c47,94,178,113,251,33C2446.709,1093.793,2554.709,922.793,2379.709,863.793Z" transform="translate(142.69 -634.312)" fill="#eee"/>
+  </svg>
+
+</div>
+
+<div class="container">
+  <div class="text-center" style="margin-bottom: 50px;">
+    <h1>Usuarios Bits America</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <form [formGroup]="usersForm" (ngSubmit)="onSubmit()" id="userForm" name="userForm">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="primerNombre"><span style="color: red;">*</span> Primer Nombre</label>
+              <input type="text" class="form-control" id="primerNombre" placeholder="Introduzca Nombre"
+                     formControlName="primerNombre">
+
+              <div *ngIf="formSubmitted && userFormControls.primerNombre.invalid">
+                <span style="color: red;">Primer nombre es requerido</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="segundoNombre">Segundo Nombre</label>
+              <input type="text" class="form-control" id="segundoNombre" placeholder="Introduzca Nombre"
+                formControlName="segundoNombre">
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="primerApellido"><span style="color: red;">*</span> Primer Apellido</label>
+              <input type="text" class="form-control" id="primerApellido" placeholder="Introduzca Apellido"
+                formControlName="primerApellido">
+
+              <div *ngIf="formSubmitted && userFormControls.primerApellido.invalid">
+                <span style="color: red;">Primer apellido es requerido</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="segundoApellido">Segundo Apellido</label>
+              <input type="text" class="form-control" id="segundoApellido" placeholder="Introduzca Apellido"
+                formControlName="segundoApellido">
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="tipoDocumento"><span style="color: red;">*</span> Tipo Documento</label>
+              <select id="tipoDocumento" name="tipoDocumento" class="custom-select"
+                formControlName="tipoDocumento">
+                <!--<option value="" selected>Seleccione</option>-->
+                <option [value]="td.idTipoDocumento" *ngFor="let td of tiposDocumento">{{td.tipoDocumento}}</option>
+              </select>
+
+              <div *ngIf="formSubmitted && userFormControls.tipoDocumento.invalid">
+                <span style="color: red;">Tipo documento es requerido</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="numeroDocumento"><span style="color: red;">*</span> Nro. Documento</label>
+              <input type="tel" class="form-control" id="numeroDocumento" placeholder="Introduzca nro. documento"
+              mask="00000000000000000000"
+                formControlName="numeroDocumento">
+
+              <div *ngIf="formSubmitted && userFormControls.numeroDocumento.invalid">
+                <span style="color: red;">Nro. documento es requerido</span>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="email"><span style="color: red;">*</span> Correo Electrónico</label>
+              <input type="email" class="form-control" id="email" placeholder="Introduzca email"
+                     formControlName="correoElectronico">
+
+              <div *ngIf="formSubmitted && userFormControls.correoElectronico.invalid">
+                <span style="color: red;">Correo electrónico es requerido</span>
+              </div>
+
+              <div *ngIf="userFormControls.correoElectronico.errors?.pattern">
+                <span style="color: red;">El correo electrónico no cumple con el formato requerido</span>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="emailConfirm"><span style="color: red;">*</span> Confirmar Correo Electrónico</label>
+              <input type="email" class="form-control" id="emailConfirm" placeholder="Introduzca email"
+                     formControlName="correoElectronicoVerificar" (blur)="validateEmail()">
+
+              <div *ngIf="formSubmitted && userFormControls.correoElectronicoVerificar.invalid">
+                <span style="color: red;">Confirmación de correo es requerido</span>
+              </div>
+
+              <div *ngIf="!emailConfirmmed && userFormControls.correoElectronicoVerificar.valid">
+                <span style="color: red;">El correo de confirmación es diferente al correo electrónico suministrado</span>
+              </div>
+
+              <div *ngIf="userFormControls.correoElectronicoVerificar.errors?.pattern">
+                <span style="color: red;">El correo de confirmación no cumple con el formato requerido</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="celular"><span style="color: red;">*</span> Celular</label>
+              <input type="text" class="form-control" id="celular" placeholder="Introduzca nro. celular"  mask="(000) 000-0000"
+                     formControlName="celular">
+
+              <div *ngIf="formSubmitted && userFormControls.celular.invalid">
+                <span style="color: red;">Celular es requerido</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="telefono">Telefono</label>
+              <input type="text" class="form-control" id="telefono" placeholder="Introduzca nro. telefono"
+                formControlName="telefono">
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="ciudad"><span style="color: red;">*</span> Ciudad</label>
+              <select id="ciudad" name="ciudad" class="custom-select"
+                formControlName="idCiudad">
+                <!--<option value="" selected>Seleccione</option>-->
+                <option [value]="c.ciudadId" *ngFor="let c of ciudades">{{c.descripcion}}</option>
+              </select>
+
+              <div *ngIf="formSubmitted && userFormControls.idCiudad.invalid">
+                <span style="color: red;">Ciudad es requerido</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-9">
+            <div class="form-group">
+              <label for="direccion"><span style="color: red;">*</span> Dirección residencia</label>
+              <input type="text" class="form-control" id="direccion" placeholder="Introduzca dirección"
+                formControlName="direccionResidencia">
+
+              <div *ngIf="formSubmitted && userFormControls.direccionResidencia.invalid">
+                <span style="color: red;">Direccion es requerido</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12 text-center">
+            <button class="btn btn-success" type="submit">Guardar usuario</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
